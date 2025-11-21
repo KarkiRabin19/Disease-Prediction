@@ -1,0 +1,28 @@
+# Ignore the virtual environment folder
+venv/
+*.venv
+.env/
+
+# Python bytecode files
+__pycache__/
+*.pyc
+
+# IDE or editor folders (e.g. PyCharm, VSCode)
+.vscode/
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# System files (macOS, Windows)
+.DS_Store
+Thumbs.db
+
+# Logs and temp files
+*.log
+*.bak
+.myenv
+# Python packages
+*.egg-info/
+dist/
+build/
