@@ -44,7 +44,7 @@ const Service = () => {
 
 export default Service;
 
-    const ServiceCard = ({ icon, title, details }) => {
+const ServiceCard = ({ icon, title, details }) => {
     return (
         <>
         <motion.div

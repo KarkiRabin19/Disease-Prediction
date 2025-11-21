@@ -1,80 +1,52 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
-import Login from "./pages/Login";
-import Signup from "./pages/SignUp";
 import PredictDisease from "./pages/PredictDisease";
 import Appointments from "./pages/Appointment";
 import Profile from "./pages/Profile";
+import Callback from "./pages/Callback";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 function ProtectedRoute({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
-  
-  if (isLoading) {
+
+  if (isLoading)
     return (
       <div className="flex justify-center items-center h-screen">
         <div>Loading...</div>
       </div>
     );
-  }
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
+  return isAuthenticated ? children : <Navigate to="/" replace />;
 }
 
-// 🌐 PublicRoute Component
 function PublicRoute({ children }) {
   const { isAuthenticated, isLoading } = useAuth0();
 
-  if (isLoading) {
+  if (isLoading)
     return (
       <div className="flex justify-center items-center h-screen">
         <div>Loading...</div>
       </div>
     );
-  }
 
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
-  return children;
+  return isAuthenticated ? <Navigate to="/" replace /> : children;
 }
-
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        {/* Public routes */}
+        {/* Public */}
         <Route path="/" element={<HomePage />} />
 
-        {/* Authentication routes */}
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          }
-        />
+        {/* Auth0 callback */}
+        <Route path="/callback" element={<Callback />} />
 
-        <Route
-          path="/signup"
-          element={
-            <PublicRoute>
-              <Signup />
-            </PublicRoute>
-          }
-        />
-        {/* Protected routes */}
+        {/* Protected */}
         <Route
           path="/predict"
           element={
@@ -102,10 +74,9 @@ function App() {
           }
         />
 
-        {/* Catch-all redirect */}
+        {/* Catch-all */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-
       <ToastContainer />
     </>
   );

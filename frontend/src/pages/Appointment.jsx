@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Search, X } from "lucide-react";
 import DoctorCard from "../components/DoctorCard";
-import { doctors } from "../components/DoctorList";
+import { doctors } from "../DoctorList";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 

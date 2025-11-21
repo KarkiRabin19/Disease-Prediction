@@ -317,6 +317,7 @@ function PredictDisease() {
               </button>
             </div>
           </form>
+          {/* Render the prediction  */}
           {isModalOpen && (
             <div className="fixed inset-0 flex items-center justify-center z-50 bg-black/40 backdrop-blur-sm">
               <div className="bg-white p-8 rounded-2xl shadow-2xl w-[500px] relative border border-gray-100 animate-fadeIn">
